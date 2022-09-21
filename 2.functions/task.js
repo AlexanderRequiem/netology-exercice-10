@@ -3,10 +3,6 @@ function getArrayParams(arr) {
   let min, max, sum, avg;
 
   // Ваш код
-  if (!Array.isArray(arr)) {
-    console.log("Аргумент arr не является массивом");
-    return { min: Infinity, max: Infinity, avg: undefined };
-  }
   min = arr[0];
   max = arr[0];
   sum = 0;
@@ -57,4 +53,16 @@ function makeWork(arrOfArr, func) {
 // Задание 3
 function worker2(arr) {
   // Ваш код
+  let min = arr[0];
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (min > arr[i]) {
+      min = arr[i];
+    }
+    if (max < arr[i]) {
+      max = arr[i];
+    }
+  }
+
+  return Math.abs(max-min);
 }
