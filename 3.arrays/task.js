@@ -15,6 +15,9 @@ function advancedFilter(arr) {
   let resultArr;
 
   // Ваш код
-
+  let resultArrayStage_0 = arr.filter(item => item > 0);
+  let resultArrayStage_1 = resultArrayStage_0.filter( item => item % 3 === 0);
+  resultArr = resultArrayStage_1.map(item => item * 10);
+  
   return resultArr; // array
 }
