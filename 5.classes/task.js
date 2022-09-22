@@ -108,4 +108,60 @@ class Library {
     }
 }
 
+//Класс для работы с оценкой по предмету
+class GradeBySubject {
+    constructor(grade, subject) {
+        this.grade = grade;
+        this.subject = subject;
+    }
+}
+
+class Student {
+    constructor(name, gender, age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.marks = [];
+    }
+    setSubject(subjectName) {
+        this.subject = subjectName;
+    }
+
+    addMark(mark, subject) {
+        if (mark<1 || mark > 5) {
+            return 'Ошибка, оценка должна быть числом от 1 до 5';
+        }
+        this.marks.push(new GradeBySubject(mark, subject));
+    }
+
+    getAverage() {
+        let sum = 0;
+        this.marks.every(item => sum += item.grade);
+        return sum / this.marks.length;
+    }
+
+    getAverageBySubject(subject) {
+        let sum = 0;
+        let count = 0;
+        this.marks.forEach(item => {
+            if (item.subject === subject) {
+                sum += item.grade;
+                count++;
+            }
+        });
+
+        if (count !== 0) {
+            return sum / count;
+        } else {
+            return undefined;
+        }
+    }
+
+    exclude(reason) {
+        delete this.subject;
+        delete this.marks;
+        this.excluded = reason;
+    }
+}
+
 
