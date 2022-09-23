@@ -80,19 +80,8 @@ class Library {
     }
 
     findBookBy(type, value) {
-       let result = this.books.find(currentBool => {
-        for (const key in currentBool) {
-            if (key === type && currentBool[key] === value) {
-                return true;
-            }
-        }
-        return false;
-       }); 
-       if (result === undefined) {
-        result = null;
-       }
-
-       return result;
+       let result = this.books.find(currentBool => currentBool[type] === value);
+       return result || null;
     }
 
     giveBookByName(bookName) {
@@ -135,23 +124,15 @@ class Student {
     }
 
     getAverage() {
-        let sum = 0;
-        this.marks.every(item => sum += item.grade);
+        const sum = this.marks.reduce( (previousSumValue, item) => previousSumValue + item.grade, 0);
         return sum / this.marks.length;
     }
 
     getAverageBySubject(subject) {
-        let sum = 0;
-        let count = 0;
-        this.marks.forEach(item => {
-            if (item.subject === subject) {
-                sum += item.grade;
-                count++;
-            }
-        });
-
-        if (count !== 0) {
-            return sum / count;
+        const arrayWithOnlySelectSubject = this.marks.filter(item => item.subject === subject);
+        if (arrayWithOnlySelectSubject.length !== 0) {
+            const sum = arrayWithOnlySelectSubject.reduce( (previousSumValue, item) => previousSumValue + item.grade, 0);
+            return sum / arrayWithOnlySelectSubject.length;
         } else {
             return undefined;
         }
