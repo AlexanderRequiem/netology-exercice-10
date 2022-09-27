@@ -67,6 +67,8 @@ class AlarmClock {
 
     clearAlarms() {
         //TODO: Тормознуть активные алармы
+        this.stop();
+        
         //DONE: Зачистить массив
         this.alarmCollection.splice(0, this.alarmCollection.length);
     }    
